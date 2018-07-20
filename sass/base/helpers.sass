@@ -52,8 +52,6 @@ $alignments: ('centered': 'center', 'justified': 'justify', 'left': 'left', 'rig
 @each $alignment, $text-align in $alignments
   .has-text-#{$alignment}
     text-align: #{$text-align} !important
-
-@each $alignment, $text-align in $alignments
   +mobile
     .has-text-#{$alignment}-mobile
       text-align: #{$text-align} !important
@@ -91,9 +89,6 @@ $alignments: ('centered': 'center', 'justified': 'justify', 'left': 'left', 'rig
 .is-uppercase
   text-transform: uppercase !important
 
-.is-italic
-  font-style: italic !important
-
 @each $name, $pair in $colors
   $color: nth($pair, 1)
   .has-text-#{$name}
@@ -102,14 +97,10 @@ $alignments: ('centered': 'center', 'justified': 'justify', 'left': 'left', 'rig
     &:hover,
     &:focus
       color: darken($color, 10%) !important
-  .has-background-#{$name}
-    background-color: $color !important
 
 @each $name, $shade in $shades
   .has-text-#{$name}
     color: $shade !important
-  .has-background-#{$name}
-    background-color: $shade !important
 
 .has-text-weight-light
   font-weight: $weight-light !important
@@ -157,17 +148,6 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex'
 
 .is-hidden
   display: none !important
-
-.is-sr-only
-  border: none !important
-  clip-path: inset(50%) !important
-  clip: rect(0, 0, 0, 0) !important
-  height: 0.01em !important
-  overflow: hidden !important
-  padding: 0 !important
-  position: absolute !important
-  white-space: nowrap !important
-  width: 0.01em !important
 
 +mobile
   .is-hidden-mobile
@@ -260,3 +240,29 @@ $displays: 'block' 'flex' 'inline' 'inline-block' 'inline-flex'
 
 .is-unselectable
   +unselectable
+
+.is-ellipsis
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+
+.hover 
+    &:hover 
+      background: #f9f9f9
+      cursor: pointer
+      box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)
+
+.hover-text
+    &:hover 
+      color:black 
+      cursor: pointer
+        
+.has-bg-light 
+  background: whitesmoke !important
+
+.p-75 
+  padding: 0.75rem !important
+
+.input-borderless
+  border:0 !important
+  border-bottom: 1px dotted lightgrey !important

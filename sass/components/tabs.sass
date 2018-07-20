@@ -1,6 +1,6 @@
 $tabs-border-bottom-color: $border !default
 $tabs-border-bottom-style: solid !default
-$tabs-border-bottom-width: 1px !default
+$tabs-border-bottom-width: 2px !default
 $tabs-link-color: $text !default
 $tabs-link-hover-border-bottom-color: $text-strong !default
 $tabs-link-hover-color: $text-strong !default
@@ -18,7 +18,7 @@ $tabs-boxed-link-active-border-bottom-color: transparent !default
 
 $tabs-toggle-link-border-color: $border !default
 $tabs-toggle-link-border-style: solid !default
-$tabs-toggle-link-border-width: 1px !default
+$tabs-toggle-link-border-width: 2px !default
 $tabs-toggle-link-hover-background-color: $background !default
 $tabs-toggle-link-hover-border-color: $border-hover !default
 $tabs-toggle-link-radius: $radius !default
@@ -132,16 +132,6 @@ $tabs-toggle-link-active-color: $link-invert !default
           z-index: 1
     ul
       border-bottom: none
-    &.is-toggle-rounded
-      li
-        &:first-child a
-          border-bottom-left-radius: $radius-rounded
-          border-top-left-radius: $radius-rounded
-          padding-left: 1.25em
-        &:last-child a
-          border-bottom-right-radius: $radius-rounded
-          border-top-right-radius: $radius-rounded
-          padding-right: 1.25em
   // Sizes
   &.is-small
     font-size: $size-small

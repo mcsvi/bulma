@@ -1,4 +1,4 @@
-$body-background-color: $white !default
+$body-background-color: rgba(81,125,169,0.1) !default
 $body-size: 16px !default
 $body-rendering: optimizeLegibility !default
 $body-family: $family-primary !default
@@ -11,8 +11,8 @@ $code-padding: 0.25em 0.5em 0.25em !default
 $code-weight: normal !default
 $code-size: 0.875em !default
 
-$hr-background-color: $background !default
-$hr-height: 2px !default
+$hr-background-color: $border !default
+$hr-height: 1px !default
 $hr-margin: 1.5rem 0 !default
 
 $strong-color: $text-strong !default
@@ -56,6 +56,7 @@ body
   font-size: 1rem
   font-weight: $body-weight
   line-height: $body-line-height
+  width: 100vw
 
 // Inline
 
@@ -125,3 +126,13 @@ table
     vertical-align: top
   th
     color: $text-strong
+
+.noScroll
+  position: fixed
+
+.has-shadow 
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1)
+
+
+
+

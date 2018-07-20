@@ -35,8 +35,8 @@ $file-name-border-style: solid !default
 $file-name-border-width: 1px 1px 1px 0 !default
 $file-name-max-width: 16em !default
 
-$label-color: $grey-darker !default
-$label-weight: $weight-bold !default
+$label-color: $grey !default
+$label-weight: $weight-medium !default
 
 $help-size: $size-small !default
 
@@ -54,8 +54,7 @@ $help-size: $size-small !default
   &.is-focused,
   &:active,
   &.is-active
-    border-color: $input-focus-border-color
-    box-shadow: $input-focus-box-shadow-size $input-focus-box-shadow-color
+    background: $input-background-color
   &[disabled]
     background-color: $input-disabled-background-color
     border-color: $input-disabled-border-color
@@ -67,9 +66,11 @@ $help-size: $size-small !default
 .input,
 .textarea
   +input
-  box-shadow: $input-shadow
+  box-shadow: none
   max-width: 100%
   width: 100%
+  &[type="search"]
+    border-radius: 290486px
   &[readonly]
     box-shadow: none
   // Colors
@@ -98,10 +99,6 @@ $help-size: $size-small !default
     width: auto
 
 .input
-  &.is-rounded
-    border-radius: $radius-rounded
-    padding-left: 1em
-    padding-right: 1em
   &.is-static
     background-color: transparent
     border-color: transparent
@@ -119,7 +116,7 @@ $help-size: $size-small !default
     max-height: 600px
     min-height: 120px
   &[rows]
-    height: initial
+    height: unset
   // Modifiers
   &.has-fixed-size
     resize: none
@@ -149,15 +146,12 @@ $help-size: $size-small !default
   vertical-align: top
   &:not(.is-multiple)
     height: 2.25em
-  &:not(.is-multiple):not(.is-loading)
     &::after
       +arrow($input-arrow)
+      margin-top: -0.375em
       right: 1.125em
+      top: 50%
       z-index: 4
-  &.is-rounded
-    select
-      border-radius: $radius-rounded
-      padding-left: 1em
   select
     +input
     cursor: pointer
@@ -172,30 +166,24 @@ $help-size: $size-small !default
     &:not([multiple])
       padding-right: 2.5em
     &[multiple]
-      height: initial
+      height: unset
       padding: 0
       option
         padding: 0.5em 1em
   // States
-  &:not(.is-multiple):not(.is-loading):hover
+  &:hover
     &::after
       border-color: $input-hover-color
   // Colors
   @each $name, $pair in $colors
     $color: nth($pair, 1)
-    &.is-#{$name}
-      &:not(:hover)::after
-        border-color: $color
-      select
-        border-color: $color
-        &:hover,
-        &.is-hovered
-          border-color: darken($color, 5%)
-        &:focus,
-        &.is-focused,
-        &:active,
-        &.is-active
-          box-shadow: $input-focus-box-shadow-size rgba($color, 0.25)
+    &.is-#{$name} select
+      border-color: $color
+      &:focus,
+      &.is-focused,
+      &:active,
+      &.is-active
+        box-shadow: $input-focus-box-shadow-size rgba($color, 0.25)
   // Sizes
   &.is-small
     +control-small
@@ -285,6 +273,10 @@ $help-size: $size-small !default
         border-radius: $file-radius
       .file-name
         display: none
+  &.is-centered
+    justify-content: center
+  &.is-right
+    justify-content: flex-end
   &.is-boxed
     .file-label
       flex-direction: column
@@ -314,22 +306,19 @@ $help-size: $size-small !default
       .file-name
         border-radius: 0 0 $file-radius $file-radius
         border-width: 0 1px 1px
-  &.is-centered
-    justify-content: center
-  &.is-fullwidth
-    .file-label
-      width: 100%
-    .file-name
-      flex-grow: 1
-      max-width: none
   &.is-right
-    justify-content: flex-end
     .file-cta
       border-radius: 0 $file-radius $file-radius 0
     .file-name
       border-radius: $file-radius 0 0 $file-radius
       border-width: 1px 0 1px 1px
       order: -1
+  &.is-fullwidth
+    .file-label
+      width: 100%
+    .file-name
+      flex-grow: 1
+      max-width: none
 
 .file-label
   align-items: stretch
@@ -397,9 +386,8 @@ $help-size: $size-small !default
   color: $label-color
   display: block
   font-size: $size-normal
-  font-weight: $label-weight
-  &:not(:last-child)
-    margin-bottom: 0.5em
+  font-weight: $label-weight 
+  margin-bottom: 10px
   // Sizes
   &.is-small
     font-size: $size-small
@@ -421,7 +409,7 @@ $help-size: $size-small !default
 
 .field
   &:not(:last-child)
-    margin-bottom: 0.75rem
+    margin-bottom: 1.25rem
   // Modifiers
   &.has-addons
     display: flex
@@ -429,37 +417,32 @@ $help-size: $size-small !default
     .control
       &:not(:last-child)
         margin-right: -1px
-      &:not(:first-child):not(:last-child)
-        .button,
-        .input,
-        .select select
-          border-radius: 0
       &:first-child
         .button,
         .input,
         .select select
-          border-bottom-right-radius: 0
-          border-top-right-radius: 0
+          border-bottom-left-radius: $input-radius
+          border-top-left-radius: $input-radius
       &:last-child
         .button,
         .input,
         .select select
-          border-bottom-left-radius: 0
-          border-top-left-radius: 0
+          border-bottom-right-radius: $input-radius
+          border-top-right-radius: $input-radius
       .button,
       .input,
       .select select
-        &:not([disabled])
-          &:hover,
-          &.is-hovered
-            z-index: 2
-          &:focus,
-          &.is-focused,
-          &:active,
-          &.is-active
-            z-index: 3
-            &:hover
-              z-index: 4
+        border-radius: 0
+        &:hover,
+        &.is-hovered
+          z-index: 2
+        &:focus,
+        &.is-focused,
+        &:active,
+        &.is-active
+          z-index: 3
+          &:hover
+            z-index: 4
       &.is-expanded
         flex-grow: 1
     &.has-addons-centered
@@ -541,7 +524,6 @@ $help-size: $size-small !default
         margin-right: 0.75rem
 
 .control
-  clear: both //fixes the icon floating out of the input when help text is floated right
   font-size: $size-normal
   position: relative
   text-align: left
@@ -618,7 +600,6 @@ $help-size: $size-small !default
       position: absolute !important
       right: 0.625em
       top: 0.625em
-      z-index: 4
     &.is-small:after
       font-size: $size-small
     &.is-medium:after
